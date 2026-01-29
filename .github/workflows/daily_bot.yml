@@ -21,11 +21,11 @@ jobs:
 
     - name: Instalar librerías
       run: |
-        pip install python-telegram-bot icalevents datetime
+        pip install python-telegram-bot icalevents pytz
 
     - name: Ejecutar el bot
       env:
         TOKEN: ${{ secrets.TOKEN_BOT }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
         ICAL_URL: ${{ secrets.ICAL }}
-      run: python recordatorio.py
+      run: python main.py
