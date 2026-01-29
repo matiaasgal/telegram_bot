@@ -11,6 +11,10 @@ TOKEN = os.getenv("TOKEN_BOT")
 CHAT_ID = os.getenv("CHAT_ID")
 ICAL_URL = os.getenv("ICAL")
 
+print("TOKEN:", bool(TOKEN))
+print("CHAT_ID:", bool(CHAT_ID))
+print("ICAL_URL:", bool(ICAL_URL))
+
 if not TOKEN or not CHAT_ID or not ICAL_URL:
     print("Error: Falta configurar alguna variable de entorno")
     exit(1)
