@@ -25,7 +25,7 @@ jobs:
 
     - name: Ejecutar el bot
       env:
-        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
+        TOKEN: ${{ secrets.TOKEN_BOT }}
+        CHAT_ID: ${{ secrets.CHAT_ID }}
+        ICAL_URL: ${{ secrets.ICAL }}
       run: python recordatorio.py
