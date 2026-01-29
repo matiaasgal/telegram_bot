@@ -1,0 +1,31 @@
+name: Bot de Recordatorios Diario
+
+on:
+  schedule:
+    # esto corre todos los días a las 22:00 hora UTC, hacer conversion a GTM-3 | GTM-4 (Santiago)
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar código del repo
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Instalar librerías
+      run: |
+        pip install python-telegram-bot icalevents datetime
+
+    - name: Ejecutar el bot
+      env:
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
+      run: python recordatorio.py
