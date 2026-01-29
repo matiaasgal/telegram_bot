@@ -7,15 +7,15 @@ from datetime import datetime, date, timedelta
 import pytz
 
 
-TOKEN = os.getenv("TOKEN_BOT")
+TOKEN_BOT = os.getenv("TOKEN_BOT")
 CHAT_ID = os.getenv("CHAT_ID")
-ICAL_URL = os.getenv("ICAL")
+ICAL = os.getenv("ICAL")
 
-print("TOKEN:", bool(TOKEN))
+print("TOKEN:", bool(TOKEN_BOT))
 print("CHAT_ID:", bool(CHAT_ID))
-print("ICAL_URL:", bool(ICAL_URL))
+print("ICAL:", bool(ICAL))
 
-if not TOKEN or not CHAT_ID or not ICAL_URL:
+if not TOKEN_BOT or not CHAT_ID or not ICAL:
     print("Error: Falta configurar alguna variable de entorno")
     exit(1)
 
@@ -31,7 +31,7 @@ async def verificar_eventos():
     fin_utc = fin.astimezone(utc)
 
     try:
-        lista_eventos = events(ICAL_URL, start=inicio_utc, end=fin_utc)
+        lista_eventos = events(ICAL, start=inicio_utc, end=fin_utc)
   
         if not lista_eventos:
             print("No hay eventos para mañana")
@@ -42,7 +42,7 @@ async def verificar_eventos():
             hora = evento.start.strftime("%H:%M")
             mensaje += f"• {evento.summary} a las {hora} hrs\n"
 
-        bot = Bot(token=TOKEN)
+        bot = Bot(token=TOKEN_BOT)
         await bot.send_message(chat_id=CHAT_ID, text=mensaje, parse_mode="Markdown")
         print('Recordatorio enviado')
 
