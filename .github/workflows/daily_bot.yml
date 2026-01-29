@@ -25,17 +25,17 @@ jobs:
 
     - name: Debug secrets
       env:
-        TOKEN: ${{ secrets.TOKEN_BOT }}
+        TOKEN_BOT: ${{ secrets.TOKEN_BOT }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
-        ICAL_URL: ${{ secrets.ICAL }}
+        ICAL: ${{ secrets.ICAL }}
       run: |
-        echo "TOKEN=${TOKEN:+OK}"
+        echo "TOKEN_BOT=${TOKEN_BOT:+OK}"
         echo "CHAT_ID=${CHAT_ID:+OK}"
-        echo "ICAL_URL=${ICAL_URL:+OK}"
+        echo "ICAL=${ICAL:+OK}"
 
     - name: Ejecutar el bot
       env:
-        TOKEN: ${{ secrets.TOKEN_BOT }}
+        TOKEN_BOT: ${{ secrets.TOKEN_BOT }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
-        ICAL_URL: ${{ secrets.ICAL }}
+        ICAL: ${{ secrets.ICAL }}
       run: python main.py
