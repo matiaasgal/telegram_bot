@@ -23,16 +23,6 @@ jobs:
       run: |
         pip install python-telegram-bot icalevents pytz
 
-    - name: Debug secrets
-      env:
-        TOKEN_BOT: ${{ secrets.TOKEN_BOT }}
-        CHAT_ID: ${{ secrets.CHAT_ID }}
-        ICAL: ${{ secrets.ICAL }}
-      run: |
-        echo "TOKEN_BOT=${TOKEN_BOT:+OK}"
-        echo "CHAT_ID=${CHAT_ID:+OK}"
-        echo "ICAL=${ICAL:+OK}"
-
     - name: Ejecutar el bot
       env:
         TOKEN_BOT: ${{ secrets.TOKEN_BOT }}
